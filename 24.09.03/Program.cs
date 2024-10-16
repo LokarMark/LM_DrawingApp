@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.IO;
 
 namespace _24._09._03
 {
@@ -15,327 +13,52 @@ namespace _24._09._03
         {
             int x = Console.WindowWidth / 2;
             int y = Console.WindowHeight / 2;
-            int j = 0;
-            string style = "";
             int v = 0;
             bool w = false;
-            //Console.Clear();
-
-            //█ ▓ ▒ ░
+            bool b = false;
+            bool c = false;
+            string style = "█";
+            // █ ▓ ▒ ░
+            Console.Clear();
+            DrawBorder();
 
             do
             {
 
-                //╔╗╚╝║═
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write('╔');
-                for (int i = 1; i < Console.WindowWidth - 1; i++)
-                {
-                    Console.Write('═');
-                }
-                Console.Write('╗');
-                for (int i = 1; i < Console.WindowHeight - 1; i++)
-                {
-                    Console.SetCursorPosition(Console.WindowWidth - 1, i);
-                    Console.Write("║");
-                }
-                Console.SetCursorPosition(Console.WindowWidth - 1, Console.WindowHeight - 1);
-                Console.Write('╝');
-                for (int i = Console.WindowWidth - 2; i > 0; i--)
-                {
-                    Console.SetCursorPosition(i, Console.WindowHeight - 1);
-                    Console.Write('═');
-                }
-                Console.SetCursorPosition(0, Console.WindowHeight - 1);
-                Console.Write('╚');
-                for (int i = Console.WindowHeight - 2; i > 0; i--)
-                {
-                    Console.SetCursorPosition(0, i);
-                    Console.Write("║");
-                }
-                j++;
-            } while (j < 1);
-            Console.SetCursorPosition(0, 0);
-            Console.SetCursorPosition(x, y - 2);
-            // ▀ ▄ █ ─ │ ┌ ┐ └ ┘
-            Console.ForegroundColor = ConsoleColor.White;
+                DrawMenu(x, ref v);
 
-            if (v == 0)
-            {
-                //Új
-                for (int i = x - 15; i < x + 16; i++)
-                {
-                    Console.SetCursorPosition(i, 5);
-                    Console.Write("▄");
-                }
-                for (int i = x - 15; i < x + 16; i++)
-                {
-                    Console.SetCursorPosition(i, 6);
-                    Console.Write("█");
-                }
-                for (int i = x - 15; i < x + 16; i++)
-                {
-                    Console.SetCursorPosition(i, 7);
-                    Console.Write("█");
-                }
-                for (int i = x - 15; i < x + 16; i++)
-                {
-                    Console.SetCursorPosition(i, 8);
-                    Console.Write("█");
-                }
-                for (int i = x - 15; i < x + 16; i++)
-                {
-                    Console.SetCursorPosition(i, 9);
-                    Console.Write("▀");
-                }
-                Console.SetCursorPosition(x, 7);
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.Write("Új");
-
-                //Szerkesztés
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.SetCursorPosition(x - 15, 10);
-                Console.Write("┌");
-                for (int i = x - 14; i < x + 15; i++)
-                {
-                    Console.SetCursorPosition(i, 10);
-                    Console.Write("─");
-                }
-                Console.SetCursorPosition(x + 15, 10);
-                Console.Write("┐");
-                for (int i = 11; i < 14; i++)
-                {
-                    Console.SetCursorPosition(x + 15, i);
-                    Console.Write("│");
-                }
-                Console.SetCursorPosition(x + 15, 14);
-                Console.Write("┘");
-                for (int i = x + 14; i > x - 15; i--)
-                {
-                    Console.SetCursorPosition(i, 14);
-                    Console.Write("─");
-                }
-                Console.SetCursorPosition(x - 15, 14);
-                Console.Write("└");
-                for (int i = 13; i > 10; i--)
-                {
-                    Console.SetCursorPosition(x - 15, i);
-                    Console.Write("│");
-                }
-                Console.SetCursorPosition(x - 5, 12);
-                Console.Write("Szerkesztés");
-
-                //Törlés
-                Console.SetCursorPosition(x - 15, 15);
-                Console.Write("┌");
-                for (int i = x - 14; i < x + 15; i++)
-                {
-                    Console.SetCursorPosition(i, 15);
-                    Console.Write("─");
-                }
-                Console.SetCursorPosition(x + 15, 15);
-                Console.Write("┐");
-                for (int i = 16; i < 19; i++)
-                {
-                    Console.SetCursorPosition(x + 15, i);
-                    Console.Write("│");
-                }
-                Console.SetCursorPosition(x + 15, 19);
-                Console.Write("┘");
-                for (int i = x + 14; i > x - 15; i--)
-                {
-                    Console.SetCursorPosition(i, 19);
-                    Console.Write("─");
-                }
-                Console.SetCursorPosition(x - 15, 19);
-                Console.Write("└");
-                for (int i = 18; i > 15; i--)
-                {
-                    Console.SetCursorPosition(x - 15, i);
-                    Console.Write("│");
-                }
-                Console.SetCursorPosition(x - 2, 17);
-                Console.Write("Törlés");
-
-                //Kilépés
-                Console.SetCursorPosition(x - 15, 20);
-                Console.Write("┌");
-                for (int i = x - 14; i < x + 15; i++)
-                {
-                    Console.SetCursorPosition(i, 20);
-                    Console.Write("─");
-                }
-                Console.SetCursorPosition(x + 15, 20);
-                Console.Write("┐");
-                for (int i = 21; i < 24; i++)
-                {
-                    Console.SetCursorPosition(x + 15, i);
-                    Console.Write("│");
-                }
-                Console.SetCursorPosition(x + 15, 24);
-                Console.Write("┘");
-                for (int i = x + 14; i > x - 15; i--)
-                {
-                    Console.SetCursorPosition(i, 24);
-                    Console.Write("─");
-                }
-                Console.SetCursorPosition(x - 15, 24);
-                Console.Write("└");
-                for (int i = 23; i > 20; i--)
-                {
-                    Console.SetCursorPosition(x - 15, i);
-                    Console.Write("│");
-                }
-                Console.SetCursorPosition(x - 2, 22);
-                Console.Write("Kilépés");
-            }
-            else if (v == 1)
-            {
-                //Új
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.SetCursorPosition(x - 15, 5);
-                Console.Write("┌");
-                for (int i = x - 14; i < x + 15; i++)
-                {
-                    Console.SetCursorPosition(i, 5);
-                    Console.Write("─");
-                }
-                Console.SetCursorPosition(x + 15, 5);
-                Console.Write("┐");
-                for (int i = 6; i < 9; i++)
-                {
-                    Console.SetCursorPosition(x + 15, i);
-                    Console.Write("│");
-                }
-                Console.SetCursorPosition(x + 15, 9);
-                Console.Write("┘");
-                for (int i = x + 14; i > x - 15; i--)
-                {
-                    Console.SetCursorPosition(i, 9);
-                    Console.Write("─");
-                }
-                Console.SetCursorPosition(x - 15, 9);
-                Console.Write("└");
-                for (int i = 8; i > 5; i--)
-                {
-                    Console.SetCursorPosition(x - 15, i);
-                    Console.Write("│");
-                }
-                Console.SetCursorPosition(x - 5, 7);
-                Console.Write("Új");
-
-                //Szerkesztés
-                for (int i = x - 15; i < x + 16; i++)
-                {
-                    Console.SetCursorPosition(i, 10);
-                    Console.Write("▄");
-                }
-                for (int i = x - 15; i < x + 16; i++)
-                {
-                    Console.SetCursorPosition(i, 11);
-                    Console.Write("█");
-                }
-                for (int i = x - 15; i < x + 16; i++)
-                {
-                    Console.SetCursorPosition(i, 12);
-                    Console.Write("█");
-                }
-                for (int i = x - 15; i < x + 16; i++)
-                {
-                    Console.SetCursorPosition(i, 13);
-                    Console.Write("█");
-                }
-                for (int i = x - 15; i < x + 16; i++)
-                {
-                    Console.SetCursorPosition(i, 14);
-                    Console.Write("▀");
-                }
-                Console.SetCursorPosition(x - 10, 12);
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.Write("Szerkesztés");
-            }
-            Console.SetCursorPosition(x, 7);
-            do
-            {
                 switch (Console.ReadKey(true).Key)
                 {
                     case ConsoleKey.UpArrow:
-                        {
-                            v = v > 0 ? v - 1 : 3; // Menü fel/le mozgatása
-                            break;
-                        }
+                        v = v > 0 ? v - 1 : 3;
+                        break;
                     case ConsoleKey.DownArrow:
-                        {
-                            v = v < 3 ? v + 1 : 0;
-                            break;
-                        }
+                        v = v < 3 ? v + 1 : 0;
+                        break;
                     case ConsoleKey.Enter:
-                        {
-                            w = true;
-                            break;
-                        }
+                        w = true;
+                        b = true;
+                        break;
                     case ConsoleKey.Escape:
-                        {
-                            w = true;
-                            return;
-                        }
+                        w = true;
+                        break;
                 }
+
             } while (!w);
-            
 
-            /*switch (choice)
+            if (v == 0 && b)
             {
-                case "Piros":
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-                case "Zöld":
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    break;
-                case "Kék":
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    break;
-                case "Fehér":
-                    Console.ForegroundColor = ConsoleColor.White;
-                    break;
-                case "Cián":
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    break;
-                case "Sötét kék":
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                    break;
-                case "Sötét cián":
-                    Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    break;
-                case "Sötét zöld":
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    break;
-                case "Magenta":
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    break;
-            }*/
-
-            while (true)
+                c = true;
+            }
+            Console.Clear();
+            DrawBorder();
+            Console.ResetColor();
+            Console.SetCursorPosition(x, y);
+            while (c)
             {
-                //Console.SetCursorPosition(x, y);
-
+                Console.SetCursorPosition(x, y);
                 switch (Console.ReadKey(true).Key) 
                 {
-                    /*case ConsoleKey.LeftArrow:
-                        if (x > 1) 
-                        {
-                            x--;
-                        }
-                        break;
-                    case ConsoleKey.RightArrow:
-                        if (x < Console.WindowWidth - 2)
-                        {
-                            x++;
-                        }
-                        break;
                     case ConsoleKey.UpArrow:
                         if (y > 1)
                         {
@@ -343,65 +66,85 @@ namespace _24._09._03
                         }
                         break;
                     case ConsoleKey.DownArrow:
-                        if (y < Console.WindowHeight - 2)
+                        if (y < Console.WindowWidth - 1)
                         {
                             y++;
                         }
                         break;
-                    case ConsoleKey.F5:
-                        Console.ForegroundColor = ConsoleColor.Red; 
+                    case ConsoleKey.RightArrow:
+                        if (x < Console.WindowWidth - 1)
+                        {
+                            x++;
+                        }
                         break;
-                    case ConsoleKey.F6:
-                        Console.ForegroundColor = ConsoleColor.Green; 
+                    case ConsoleKey.LeftArrow:
+                        if (x > 0)
+                        {
+                            x--;
+                        }
                         break;
-                    case ConsoleKey.F7:
-                        Console.ForegroundColor = ConsoleColor.White;
+                    case ConsoleKey.F1:
+                        Console.ForegroundColor = ConsoleColor.Red;
                         break;
-                    case ConsoleKey.F8:
+                    case ConsoleKey.F2:
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        break;
+                    case ConsoleKey.F3:
                         Console.ForegroundColor = ConsoleColor.Blue;
                         break;
-                    case ConsoleKey.F9:
-                        Console.ForegroundColor = ConsoleColor.Cyan;
+                    case ConsoleKey.F4:
+                        style = "█";
                         break;
-                    case ConsoleKey.NumPad6:
-                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    case ConsoleKey.F5:
+                        style = "▓";
                         break;
-                    case ConsoleKey.F10:
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    case ConsoleKey.F6:
+                        style = "▒";
                         break;
-                    case ConsoleKey.F11:
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        break;
-                    case ConsoleKey.F12:
-                        Console.ForegroundColor = ConsoleColor.Magenta;
+                    case ConsoleKey.F7:
+                        style = "░";
                         break;
                     case ConsoleKey.Spacebar:
                         Console.Write(style);
                         break;
-                    case ConsoleKey.Backspace:
-                        Console.Clear();
-                        break;
-                    //█ ▓ ▒ ░
-                    case ConsoleKey.F1:
-                        style = "█";
-                        break;
-                    case ConsoleKey.F2:
-                        style = "▓";
-                        break;
-                    case ConsoleKey.F3:
-                        style = "▒";
-                        break;
-                    case ConsoleKey.F4:
-                        style = "░";
-                        break;*/
                     case ConsoleKey.Escape:
                         return;
-                    default:
-                        break;
                 }
             }
         }
-        /*static void DrawMenu(int x, ref int selectedIndex)
+
+        static void DrawBorder()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write('╔');
+            for (int i = 1; i < Console.WindowWidth - 1; i++)
+            {
+                Console.Write('═');
+            }
+            Console.Write('╗');
+            for (int i = 1; i < Console.WindowHeight - 1; i++)
+            {
+                Console.SetCursorPosition(Console.WindowWidth - 1, i);
+                Console.Write("║");
+            }
+            Console.SetCursorPosition(Console.WindowWidth - 1, Console.WindowHeight - 1);
+            Console.Write('╝');
+            for (int i = Console.WindowWidth - 2; i > 0; i--)
+            {
+                Console.SetCursorPosition(i, Console.WindowHeight - 1);
+                Console.Write('═');
+            }
+            Console.SetCursorPosition(0, Console.WindowHeight - 1);
+            Console.Write('╚');
+            for (int i = Console.WindowHeight - 2; i > 0; i--)
+            {
+                Console.SetCursorPosition(0, i);
+                Console.Write("║");
+            }
+        }
+
+
+        static void DrawMenu(int x, ref int selectedIndex)
         {
             string[] options = { "Új", "Szerkesztés", "Törlés", "Kilépés" };
 
@@ -461,6 +204,94 @@ namespace _24._09._03
             Console.SetCursorPosition(x - (text.Length / 2), y + 2);
             Console.Write(text);
             Console.ResetColor();
+            Console.SetCursorPosition(1, 1);
+        }
+        /*static void EditDrawing()
+        {
+            var files = Directory.GetFiles(saveDirectory);
+            if (files.Length == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Nincs elérhető rajz a szerkesztéshez.");
+                Console.ReadKey();
+                return;
+            }
+
+            var selectedFile = SelectFile(files);
+            LoadDrawing(selectedFile);
+            inDrawingMode = true;
+            Console.Clear();
+        }
+
+        static void DeleteDrawing()
+        {
+            var files = Directory.GetFiles(saveDirectory);
+            if (files.Length == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Nincs elérhető rajz a törléshez.");
+                Console.ReadKey();
+                return;
+            }
+
+            var selectedFile = SelectFile(files);
+            File.Delete(selectedFile);
+            Console.Clear();
+            Console.WriteLine("A fájl törölve lett.");
+            Console.ReadKey();
+        }
+
+        static string SelectFile(string[] files)
+        {
+            int fileIndex = 0;
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Válassz egy rajzot:");
+                for (int i = 0; i < files.Length; i++)
+                {
+                    if (i == fileIndex)
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    else
+                        Console.ResetColor();
+
+                    Console.WriteLine(Path.GetFileName(files[i]));
+                }
+
+                var key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.UpArrow && fileIndex > 0) fileIndex--;
+                else if (key.Key == ConsoleKey.DownArrow && fileIndex < files.Length - 1) fileIndex++;
+                else if (key.Key == ConsoleKey.Enter)
+                    return files[fileIndex];
+            }
+        }
+
+        static void LoadDrawing(string filePath)
+        {
+            rajz.Clear();
+            var lines = File.ReadAllLines(filePath);
+            foreach (var line in lines)
+            {
+                var parts = line.Split(',');
+                int x = int.Parse(parts[0]);
+                int y = int.Parse(parts[1]);
+                char karakter = parts[2][0];
+                ConsoleColor szin = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), parts[3]);
+                rajz.Add((x, y, karakter, szin));
+            }
+
+            RedrawSavedDrawing();
+        }
+
+        static void SaveDrawing(string fileName)
+        {
+            List<string> lines = new List<string>();
+            foreach (var item in rajz)
+            {
+                lines.Add($"{item.x},{item.y},{item.karakter},{item.szin}");
+            }
+
+            File.WriteAllLines(Path.Combine(saveDirectory, fileName), lines);
         }*/
     }
 }
