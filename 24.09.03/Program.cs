@@ -59,6 +59,18 @@ namespace _24._09._03
                 Console.SetCursorPosition(x, y);
                 switch (Console.ReadKey(true).Key) 
                 {
+                        case ConsoleKey.LeftArrow:
+                        if (x > 1) 
+                        {
+                            x--;
+                        }
+                        break;
+                    case ConsoleKey.RightArrow:
+                        if (x < Console.WindowWidth - 2)
+                        {
+                            x++;
+                        }
+                        break;
                     case ConsoleKey.UpArrow:
                         if (y > 1)
                         {
@@ -66,49 +78,61 @@ namespace _24._09._03
                         }
                         break;
                     case ConsoleKey.DownArrow:
-                        if (y < Console.WindowWidth - 1)
+                        if (y < Console.WindowHeight - 2)
                         {
                             y++;
                         }
                         break;
-                    case ConsoleKey.RightArrow:
-                        if (x < Console.WindowWidth - 1)
-                        {
-                            x++;
-                        }
-                        break;
-                    case ConsoleKey.LeftArrow:
-                        if (x > 0)
-                        {
-                            x--;
-                        }
-                        break;
-                    case ConsoleKey.F1:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        break;
-                    case ConsoleKey.F2:
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        break;
-                    case ConsoleKey.F3:
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        break;
-                    case ConsoleKey.F4:
-                        style = "█";
-                        break;
                     case ConsoleKey.F5:
-                        style = "▓";
+                        Console.ForegroundColor = ConsoleColor.Red; 
                         break;
                     case ConsoleKey.F6:
-                        style = "▒";
+                        Console.ForegroundColor = ConsoleColor.Green; 
                         break;
                     case ConsoleKey.F7:
-                        style = "░";
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                    case ConsoleKey.F8:
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        break;
+                    case ConsoleKey.F9:
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        break;
+                    case ConsoleKey.NumPad6:
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                        break;
+                    case ConsoleKey.F10:
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        break;
+                    case ConsoleKey.F11:
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        break;
+                    case ConsoleKey.F12:
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         break;
                     case ConsoleKey.Spacebar:
                         Console.Write(style);
                         break;
+                    case ConsoleKey.Backspace:
+                        Console.Clear();
+                        break;
+                    //█ ▓ ▒ ░
+                    case ConsoleKey.F1:
+                        style = "█";
+                        break;
+                    case ConsoleKey.F2:
+                        style = "▓";
+                        break;
+                    case ConsoleKey.F3:
+                        style = "▒";
+                        break;
+                    case ConsoleKey.F4:
+                        style = "░";
+                        break;*/
                     case ConsoleKey.Escape:
                         return;
+                    default:
+                        break;
                 }
             }
         }
